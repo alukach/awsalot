@@ -12,6 +12,7 @@ dependencies = [
 description = "A collection of CLI utils for helping with AWS tasks"
 license = {text = "MIT License"}
 name = "awsalot"
+readme = "README.md"
 version = "0.0.1"
 
 [project.scripts]
