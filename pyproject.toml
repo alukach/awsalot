@@ -13,8 +13,7 @@ description = "A collection of CLI utils for helping with AWS tasks"
 license = {text = "MIT License"}
 name = "awsalot"
 readme = "README.md"
-version = "0.0.1"
+version = "0.0.2"
 
 [project.scripts]
-aws-ecs-eds-sg-conn = "awsalot.ecs_rds_sg_connector:main"
-aws-secret-to-pgconn = "awsalot.secret_to_pgconn:main"
+awsalot = "awsalot:cli"

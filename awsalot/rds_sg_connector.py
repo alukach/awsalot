@@ -153,27 +153,27 @@ def get_ec2_security_group() -> Tuple[str, str]:
 
 @click.command()
 @click.option("--dry-run", is_flag=True)
-def main(dry_run):
+@click.option("--service", type=click.Choice(["ECS", "EC2"], case_sensitive=False))
+def main(dry_run, service):
     """
-    This script provides a CLI to select an AWS ECS Service and multiple RDS Instances
-    and makes the required Security Group edits to allow the ECS Service to make network
-    connections to the RDS Instances
+    Edits the security group of selected RDS Instances to allow connectivity from a
+    selected ECS Service or EC2 Instance.
     """
 
-    service_type = inquirer.list_input(
+    service = service or inquirer.list_input(
         "Select type of service that will be connecting to RDS instances",
         choices=("ecs", "ec2"),
     )
 
     service_name, src_sg = (
-        get_ecs_security_group() if service_type == "ecs" else get_ec2_security_group()
+        get_ecs_security_group() if service == "ecs" else get_ec2_security_group()
     )
 
     # Select ECS Cluster
     resource_questions = [
         inquirer.Checkbox(
             "rds_instances",
-            message=f"Select RDS Instances that will be accessed via {service_type} service",
+            message=f"Select RDS Instances that will be accessed via {service} service",
             choices=[
                 instance["DBInstanceIdentifier"] for instance in list_rds_instances()
             ],
@@ -181,7 +181,7 @@ def main(dry_run):
         inquirer.Text(
             "description",
             message="Provide a description for the connection",
-            default=lambda answers: f"Allow connections from {service_type} service {service_name} ({getuser()})",
+            default=lambda answers: f"Allow connections from {service} service {service_name} ({getuser()})",
         ),
     ]
 

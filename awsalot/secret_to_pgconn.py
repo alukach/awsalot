@@ -101,8 +101,7 @@ def format_postgres_connection_string(secret_details):
 @click.option("--filter", "-f", multiple=True)
 def main(filter):
     """
-    This script allows you to select an AWS SecretsManager Secret and attempts to
-    generate a Postgresql connection string from that secret.
+    Generate a Postgresql connection string from an AWS SecretsManager Secret.
     """
     print("Fetching AWS Secrets...", file=sys.stderr)
     secrets = fetch_aws_secrets(filters=filter)
