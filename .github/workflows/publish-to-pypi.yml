@@ -18,7 +18,7 @@ jobs:
         run: >-
           sed
           --in-place
-          -E 's|!\[([^]]*)\]\((\./)?([^)]*)\)|![\1](https://raw.githubusercontent.com/alukach/awsalot/main/\3)|g'
+          -E 's|!\[([^]]*)\]\((\./)?([^)]*)\)|![\1](https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/\3)|g'
           README.md
       - name: Install pypa/build
         run: >-
