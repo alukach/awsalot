@@ -4,6 +4,12 @@
 
 A selection of helpers to perform common AWS tasks via the command line.
 
+## Install
+
+```
+pip install awsalot
+```
+
 ## Commands
 
 - `rds-sg-connector`: Edits the security group of selected RDS Instances to allow connectivity from a selected ECS Service or EC2 Instance.
