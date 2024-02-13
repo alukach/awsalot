@@ -1,4 +1,4 @@
-from typing import List, Dict, Generator, Tuple
+from typing import List, Dict, Tuple
 from getpass import getuser
 
 import boto3
