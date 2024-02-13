@@ -16,11 +16,10 @@ jobs:
           python-version: "3.x"
       - name: Rewrite image URLs
         run: >-
-          sed 
-          -i '.orig'
+          sed
+          --in-place
           -E 's|!\[([^]]*)\]\((\./)?([^)]*)\)|![\1](https://raw.githubusercontent.com/alukach/awsalot/main/\3)|g'
           README.md
-
       - name: Install pypa/build
         run: >-
           python3 -m
