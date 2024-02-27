@@ -117,8 +117,15 @@ def main(filter):
 
     if not secret_details:
         print("Failed to retrieve secret details.", file=sys.stderr)
-        return
+        sys.exit(1)
 
     connection_string = format_postgres_connection_string(secret_details)
-    print(f"Your Postgres connection string is: ", file=sys.stderr)
+    print(
+        (
+            f"Your Postgres connection string is: "
+            if sys.stdout.isatty()
+            else "Postgres connection string sent to pipe."
+        ),
+        file=sys.stderr,
+    )
     print(connection_string, end="")

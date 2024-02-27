@@ -13,7 +13,7 @@ description = "A collection of CLI utils for helping with AWS tasks"
 license = {text = "MIT License"}
 name = "awsalot"
 readme = "README.md"
-version = "0.0.5"
+version = "0.0.6"
 
 [project.scripts]
 awsalot = "awsalot:cli"
